@@ -1,0 +1,141 @@
+﻿<mah:MetroWindow x:Class="TZ.SerialPortDebugTool.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TZ.SerialPortDebugTool"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"        
+        mc:Ignorable="d"
+        Title="TZ串口调试工具" MaxHeight="480" MaxWidth="800" ResizeMode="CanMinimize">
+    <Grid>
+        <!--网格列-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--网格行-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0"></StackPanel>
+        <StackPanel Grid.Row="1">            
+    <Grid>
+        <!--网格列-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"></ColumnDefinition>
+            <ColumnDefinition Width="560"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">            
+            <GroupBox VerticalAlignment="Top">
+                <GroupBox.Header>串口参数设置</GroupBox.Header>
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Text=" 端 口 :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <ComboBox MinWidth="150" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding PortNameList}"
+                                          SelectedItem="{Binding PortName}" IsEnabled="{Binding IsEnabledPortName}">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Text="波特率:" VerticalAlignment="Center" Margin="5,0,5,0"></TextBlock>
+                        <ComboBox MinWidth="150" VerticalAlignment="Center" Margin="5,0"  ItemsSource="{Binding BaudRateList}"
+                                      SelectedItem="{Binding BaudRate}" IsEnabled="{Binding IsEnabledBaudRate}">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Text="数据位:" VerticalAlignment="Center" Margin="5,0,5,0"></TextBlock>
+                        <ComboBox MinWidth="150" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding DataBitsList}" 
+                                      SelectedItem="{Binding DataBits}" IsEnabled="{Binding IsEnabledDataBits}">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Text="校验位:" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                        <ComboBox MinWidth="150" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding CheckBitList}"
+                                      SelectedItem="{Binding CheckBit}" IsEnabled="{Binding IsEnabledCheckBit}">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Text="停止位:" VerticalAlignment="Center" Margin="5,0,5,0"></TextBlock>
+                        <ComboBox MinWidth="150" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding StopBitList}"
+                                      SelectedItem="{Binding StopBit}" IsEnabled="{Binding IsEnabledStopBit}">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <Button MinWidth="80" Content="打开端口" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5 0" 
+                        Command="{Binding OpenPortCommand}" />
+                        <Button MinWidth="80" Content="关闭端口" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5 0" 
+                        Command="{Binding ClosePortCommand}" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox VerticalAlignment="Top">
+                <GroupBox.Header>接受参数设置</GroupBox.Header>
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Text="数据格式 :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                                <ComboBox MinWidth="140" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding DataTypeList}"
+                                          SelectedItem="{Binding ReceivedDataType}"  IsEnabled="{Binding IsEnabledReceivedDataType}">
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Text="超时毫秒 :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                                <TextBox MinWidth="60" Text="{Binding ReadTimeout}" IsEnabled="{Binding IsEnabledReadTimeout}"></TextBox>
+                        <Button MinWidth="60" Content="清空接收数据" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0" 
+                        Command="{Binding ClearReceivedDataCommand}" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox VerticalAlignment="Top">
+                <GroupBox.Header>发送参数设置</GroupBox.Header>
+                <StackPanel Orientation="Vertical" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                        <TextBlock Text="数据格式 :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                                <ComboBox MinWidth="140" VerticalAlignment="Center" Margin="5,0" ItemsSource="{Binding DataTypeList}"
+                                          SelectedItem="{Binding SendDataType}" IsEnabled="{Binding IsEnabledSendDataType}" >
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="2">
+                                <TextBlock Text="超时毫秒 :" VerticalAlignment="Center" Margin="5,0"></TextBlock>
+                                <TextBox MinWidth="60" Text="{Binding WriteTimeout}" IsEnabled="{Binding IsEnabledWriteTimeout}"></TextBox>
+                                <Button MinWidth="60" Content="清空发送数据" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0" 
+                        Command="{Binding ClearSendDataCommand}" />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+        <StackPanel Grid.Column="1">            
+            <GroupBox VerticalAlignment="Top">
+                <GroupBox.Header>接收数据区</GroupBox.Header>
+                <StackPanel Orientation="Horizontal" Margin="0">
+                    <TextBox Height="286" Width="540" TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Visible"
+                             IsEnabled="True"
+                             Background="LightGray"
+                             Foreground="Red"
+                                 AcceptsReturn="True" VerticalContentAlignment="Top"
+                                 Margin="5"  Text="{Binding ReceivedDataContent,Mode=TwoWay}"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox VerticalAlignment="Top">
+                <GroupBox.Header>发送数据区</GroupBox.Header>
+                <StackPanel Orientation="Horizontal" Margin="0">
+                    <TextBox Height="62" Width="400" TextWrapping="Wrap"
+                                 VerticalScrollBarVisibility="Visible"
+                                 AcceptsReturn="True" VerticalContentAlignment="Top"
+                                 Margin="5"  Text="{Binding SendDataContent}"/>
+                            <Button MinWidth="100" Content="发送" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                    Margin="15 0 0 0" Height="60" Command="{Binding SendDataCommand, Mode=TwoWay}"/>
+                        </StackPanel>
+            </GroupBox>
+        </StackPanel>
+    </Grid>
+        </StackPanel>
+
+        <StatusBar Grid.Row="2" >
+            <StatusBarItem FontFamily="Arial" FontSize="12" Foreground="White"/>
+        </StatusBar>
+        <StatusBar Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,10,0" Background="Transparent">
+            <StatusBarItem Content="author : tyz" FontFamily="Arial" FontSize="12" Foreground="White" />
+        </StatusBar>
+    </Grid>
+</mah:MetroWindow>

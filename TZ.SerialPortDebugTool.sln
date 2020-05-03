@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TZ.SerialPortDebugTool", "TZ.SerialPortDebugTool\TZ.SerialPortDebugTool.csproj", "{A752DBC0-D1B9-4617-A9C8-B3149BB77BE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A752DBC0-D1B9-4617-A9C8-B3149BB77BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A752DBC0-D1B9-4617-A9C8-B3149BB77BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A752DBC0-D1B9-4617-A9C8-B3149BB77BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A752DBC0-D1B9-4617-A9C8-B3149BB77BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32851079-450B-4790-840F-099E6EFD0BA2}
+	EndGlobalSection
+EndGlobal
